@@ -5,6 +5,7 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan"); // log generator
 const PORT = process.env.PORT;
+const database = require("./Database");
 
 //middleware
 app.use(express.json());
