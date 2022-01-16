@@ -6,11 +6,18 @@ const cors = require("cors");
 const morgan = require("morgan"); // log generator
 const PORT = process.env.PORT;
 const database = require("./Database");
+const bodyParser = require('body-parser');
+
+// user route
+const userRoute = require("./Routes/userRoute");
+
 
 //middleware
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/api/user", userRoute);
 
 
 //route
@@ -20,10 +27,6 @@ app.get("/", (req, res) => {
         "message":"Amazon clone REST API Home page."
     });
 });
-
-
-
-
 
 //server start
 app.listen(PORT, () => {
